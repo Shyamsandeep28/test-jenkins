@@ -18,6 +18,7 @@ pipeline {
         
         stage('deploy') {
             steps {
+                sh 'docker rm -f `docker ps -aq`'
                 sh 'docker build -t myappimage .'
                 sh 'docker run -d --name application -p 8081:8080 myappimage'
             }
